@@ -1,0 +1,36 @@
+version: "3"
+services:
+    #PHP Service
+    app:
+        build:
+            args:
+                user: php-user
+                uid: 1000
+            context: ./
+            dockerfile: dockerfile
+        image: taskbackend_app
+        container_name: taskbackend_app
+        restart: unless-stopped
+        working_dir: /var/www/
+        volumes:
+            - ./:/var/www
+        networks:
+            - webservernetwork
+
+    #Nginx Service
+    webserver:
+        image: nginx:alpine
+        container_name: webserverapp
+        restart: unless-stopped
+        ports:
+            - "8000:80"
+        volumes:
+            - ./:/var/www
+            - ./nginx:/etc/nginx/conf.d/
+        networks:
+            - webservernetwork
+
+#Docker Networks
+networks:
+    webservernetwork:
+        driver: bridge

@@ -1,0 +1,44 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: laravelapp
+  name: laravelapp
+  namespace: default
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: laravelapp
+  strategy:
+    rollingUpdate:
+      maxSurge: 25%
+      maxUnavailable: 25%
+    type: RollingUpdate
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        app: laravelapp
+    spec:
+      volumes:
+      - name: dir
+        hostpath: 
+          path: /code
+      containers:
+      - image: khan1001/taskbackend_app:0.0.2_Release
+        volumemounts:
+        - name: dir
+        - mountpath: /code
+        imagePullPolicy: IfNotPresent
+      initcontainers:
+      - name: install
+        image: busybox
+        volumemounts:
+        - name: dir
+          mountpaths: /code
+          command:
+          - cp
+          - "-f"
+          - "/var/www"
+          - "/code/app"

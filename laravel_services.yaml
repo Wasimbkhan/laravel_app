@@ -1,0 +1,14 @@
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app: laravelapp
+  name: laravelapp
+  namespace: default
+spec:
+  selector:
+    app: laravelapp
+  ports:
+    - protocol: TCP
+      port: 9000
+
