@@ -40,7 +40,7 @@
 
 # RUN composer install
 
-FROM --platform=linux/amd64 php:8.2-fpm
+FROM php:8.2-fpm
 
 
 ARG user
@@ -73,11 +73,11 @@ RUN mkdir -p /home/$user/.composer && \
     chown -R $user:$user /home/$user
 
 WORKDIR /var/www
-COPY ./ /var/www/
+COPY . /var/www
 COPY --chown=$user . /var/www
 
 USER $user
 
-RUN composer install
+RUN composer install --ignore-platform-reqs
 
 
