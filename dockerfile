@@ -23,7 +23,15 @@ RUN apt-get clean && rm -rf /var/lib/apt/lists/*
 RUN docker-php-ext-install pdo_mysql mbstring exif pcntl bcmath gd
 
 # Get latest Composer
-COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
+#COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
+# Install Composer globally
+RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
+
+# Copy the composer.json and composer.lock files into the container
+COPY composer.json composer.lock /var/www/
+
+# Install Composer dependencies
+RUN composer install --prefer-dist --no-progress --no-interaction
 
 # Create system user to run Composer and Artisan Commands
 
@@ -40,6 +48,5 @@ COPY --chown=$user . /var/www
 
 USER $user
 
-RUN composer install
 
 
