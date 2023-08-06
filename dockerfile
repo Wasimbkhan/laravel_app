@@ -74,7 +74,7 @@ RUN mkdir -p /home/$user/.composer && \
 
 WORKDIR /var/www
 COPY . /var/www
-COPY --chown=$user . /var/www
+COPY --chown=$user . /var/www/
 
 USER $user
 
