@@ -68,6 +68,8 @@ RUN docker-php-ext-install pdo_mysql mbstring exif pcntl bcmath gd
 COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
 
 # Create system user to run Composer and Artisan Commands
+USER root
+RUN mkdir -p /var/www/vendor && chown -R $user:$user /var/www/vendor
 RUN useradd -G www-data,root -u $uid -d /home/$user $user
 RUN mkdir -p /home/$user/.composer && \
     chown -R $user:$user /home/$user
@@ -76,7 +78,7 @@ RUN mkdir -p /var/www/vendor && chown -R $user:$user /var/www/vendor
 
 WORKDIR /var/www
 COPY . /var/www
-COPY --chown=$user . /var/www/
+COPY --chown=$user . /var/www
 
 USER $user
 
