@@ -78,6 +78,6 @@ COPY --chown=$user . /var/www
 
 USER $user
 
-RUN composer install
+RUN composer install --no-cache
 
 
