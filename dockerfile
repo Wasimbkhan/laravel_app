@@ -78,6 +78,6 @@ COPY --chown=$user . /var/www
 
 USER $user
 
-RUN composer install --ignore-platform-reqs
+RUN composer install
 
 
