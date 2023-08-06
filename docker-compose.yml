@@ -4,7 +4,7 @@ services:
     app:
         build:
             args:
-                user: www-data
+                user: wasimbkhan1991@outlook.com
                 uid: 1000
             context: ./
             dockerfile: dockerfile
