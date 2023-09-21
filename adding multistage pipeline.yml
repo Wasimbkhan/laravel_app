@@ -28,8 +28,8 @@ stages:
   - job: QADeploy
     steps:
     - bash: echo QADeploy
-- stage: Preprod Deploy
+- stage: PreprodDeploy
   jobs:
   - job: Preprod
     steps:
-    - bash: echo Preprod
+    - bash: echo PreprodDeploy
