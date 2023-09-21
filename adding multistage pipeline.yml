@@ -15,26 +15,33 @@ stages:
   - job: Firstjob
     steps:
     - bash: echo build firstjob
+    - bash: echo $(cicdpipline)
   - job: Secondjob
     steps:
     - bash: echo build secondjob
 - stage: DevDeploy
+  variables:
+    environment : Dev
   dependsOn: Build
   jobs:
   - job: DevDeploy
     steps:
-    - bash: echo DevDeploy
+    - bash: echo $(environment)Deployjob
 - stage: QADeploy
+  variables:
+    environment : QA
   dependsOn: Build
   jobs:
   - job: QADeploy
     steps:
-    - bash: echo QADeploy
+    - bash: echo $(environment)Deployjob
 - stage: PreprodDeploy
+  variables:
+    environment : Preprod
   dependsOn: 
   - DevDeploy
   - QADeploy
   jobs:
   - job: Preprod
     steps:
-    - bash: echo PreprodDeploy
+    - bash: echo $(environment)Deployjob
