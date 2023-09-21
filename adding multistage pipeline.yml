@@ -15,7 +15,7 @@ stages:
   - job: Firstjob
     steps:
     - bash: echo build firstjob
-    - bash: echo $(cicdpipline)
+    - bash: echo $(cicdpipeline)
   - job: Secondjob
     steps:
     - bash: echo build secondjob
