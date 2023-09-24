@@ -16,32 +16,39 @@ stages:
     steps:
     - bash: echo build firstjob
     - bash: echo $(cicdpipeline)
-  - job: Secondjob
-    steps:
-    - bash: echo build secondjob
-- stage: DevDeploy
-  variables:
-    environment : Dev
-  dependsOn: Build
-  jobs:
-  - job: DevDeploy
-    steps:
-    - bash: echo $(environment)Deployjob
-- stage: QADeploy
-  variables:
-    environment : QA
-  dependsOn: Build
-  jobs:
-  - job: QADeploy
-    steps:
-    - bash: echo $(environment)Deployjob
-- stage: PreprodDeploy
-  variables:
-    environment : Preprod
-  dependsOn: 
-  - DevDeploy
-  - QADeploy
-  jobs:
-  - job: Preprod
-    steps:
-    - bash: echo $(environment)Deployjob
+    - bash: echo $(Build.BuildNumber)
+    - bash: echo $(Build.BuildId)
+    - bash: echo $(Build.SourceBranch)
+    - bash: echo $(Build.SourcesDirectory)
+    - bash: echo $(System.DefaultWorkingDirectory)
+    - bash: ls -r $(System.DefaultWorkingDirectory)
+    - bash: echo $(Build.ArtifactStagingDirectory)
+#   - job: Secondjob
+#     steps:
+#     - bash: echo build secondjob
+# - stage: DevDeploy
+#   variables:
+#     environment : Dev
+#   dependsOn: Build
+#   jobs:
+#   - job: DevDeploy
+#     steps:
+#     - bash: echo $(environment)Deployjob
+# - stage: QADeploy
+#   variables:
+#     environment : QA
+#   dependsOn: Build
+#   jobs:
+#   - job: QADeploy
+#     steps:
+#     - bash: echo $(environment)Deployjob
+# - stage: PreprodDeploy
+#   variables:
+#     environment : Preprod
+#   dependsOn: 
+#   - DevDeploy
+#   - QADeploy
+#   jobs:
+#   - job: Preprod
+#     steps:
+#     - bash: echo $(environment)Deployjob
