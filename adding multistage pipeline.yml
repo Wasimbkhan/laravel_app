@@ -16,13 +16,13 @@ stages:
     steps:
     - bash: echo build firstjob
     - bash: echo $(cicdpipeline)
-    - bash: echo $(Build.BuildNumber)
-    - bash: echo $(Build.BuildId)
-    - bash: echo $(Build.SourceBranch)
-    - bash: echo $(Build.SourcesDirectory)
-    - bash: echo $(System.DefaultWorkingDirectory)
+    - bash: echo build number is $(Build.BuildNumber)
+    - bash: echo build id is $(Build.BuildId)
+    - bash: echo build sourcebrach - $(Build.SourceBranch)
+    - bash: echo build source directory - $(Build.SourcesDirectory)
+    - bash: echo deafult working directory - $(System.DefaultWorkingDirectory)
     - bash: ls -r $(System.DefaultWorkingDirectory)
-    - bash: echo $(Build.ArtifactStagingDirectory)
+    - bash: echo ArtifactStagingDirectory $(Build.ArtifactStagingDirectory)
 #   - job: Secondjob
 #     steps:
 #     - bash: echo build secondjob
