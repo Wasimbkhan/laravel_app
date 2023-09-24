@@ -23,6 +23,18 @@ stages:
     - bash: echo deafult working directory - $(System.DefaultWorkingDirectory)
     - bash: ls -r $(System.DefaultWorkingDirectory)
     - bash: echo ArtifactStagingDirectory $(Build.ArtifactStagingDirectory)
+    - bash: java -version
+    - bash: node --version
+    - bash: python --version
+    - bash: mvn -version
+    - bash: ls -r $(Build.ArtifactStagingDirectory)
+    - task: copyfiles
+        input:
+          Sourcefolder: '$(System.DefaultWorkingDirectory)'
+          Contents: |
+            **/*.yaml
+          Targetfolder: '$(Build.ArtifactStagingDirectory)'
+    bash: ls -r $(Build.ArtifactStagingDirectory)
 #   - job: Secondjob
 #     steps:
 #     - bash: echo build secondjob
