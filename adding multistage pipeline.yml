@@ -34,7 +34,7 @@ stages:
         Contents: |
           **/*.yaml
         TargetFolder: '$(Build.ArtifactStagingDirectory)'
-    bash: ls -r $(Build.ArtifactStagingDirectory)
+    - bash: ls -r $(Build.ArtifactStagingDirectory)
 #   - job: Secondjob
 #     steps:
 #     - bash: echo build secondjob
