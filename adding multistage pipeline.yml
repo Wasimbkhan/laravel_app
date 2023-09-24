@@ -28,7 +28,7 @@ stages:
     - bash: python --version
     - bash: mvn -version
     - bash: ls -r $(Build.ArtifactStagingDirectory)
-    - task: copyfiles
+    - task: copyfiles@1
       inputs:
         SourceFolder: '$(System.DefaultWorkingDirectory)'
         Contents: |
