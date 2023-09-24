@@ -29,11 +29,11 @@ stages:
     - bash: mvn -version
     - bash: ls -r $(Build.ArtifactStagingDirectory)
     - task: copyfiles
-        input:
-          Sourcefolder: '$(System.DefaultWorkingDirectory)'
+        inputs:
+          SourceFolder: '$(System.DefaultWorkingDirectory)'
           Contents: |
             **/*.yaml
-          Targetfolder: '$(Build.ArtifactStagingDirectory)'
+          TargetFolder: '$(Build.ArtifactStagingDirectory)'
     bash: ls -r $(Build.ArtifactStagingDirectory)
 #   - job: Secondjob
 #     steps:
