@@ -44,10 +44,6 @@ USER $user
 
 #Install Composer dependencies & RUN composer install
 RUN composer install
-RUN composer update --no-scripts
-
-# Clear cache
-RUN apt-get clean && rm -rf /var/lib/apt/lists/*
 
 
 
