@@ -1,0 +1,66 @@
+# Starter pipeline
+# Start with a minimal pipeline that you can customize to build and deploy your code.
+# Add steps that build, run tests, deploy, and more:
+# https://aka.ms/yaml
+
+trigger:
+- main
+
+pool:
+  vmImage: ubuntu-latest
+
+stages:
+- stage: Build
+  jobs:
+  - job: Firstjob
+    steps:
+    - bash: echo build firstjob
+    - bash: echo $(cicdpipeline)
+    - bash: echo build number is $(Build.BuildNumber)
+    - bash: echo build id is $(Build.BuildId)
+    - bash: echo build sourcebrach - $(Build.SourceBranch)
+    - bash: echo build source directory - $(Build.SourcesDirectory)
+    - bash: echo deafult working directory - $(System.DefaultWorkingDirectory)
+    - bash: ls -r $(System.DefaultWorkingDirectory)
+    - bash: echo ArtifactStagingDirectory $(Build.ArtifactStagingDirectory)
+    - bash: java -version
+    - bash: node --version
+    - bash: python --version
+    - bash: mvn -version
+    - bash: ls -r $(Build.ArtifactStagingDirectory)
+    - task: copyfiles@1
+      inputs:
+        SourceFolder: '$(System.DefaultWorkingDirectory)'
+        Contents: |
+          **/*.yaml
+        TargetFolder: '$(Build.ArtifactStagingDirectory)'
+    - bash: ls -r $(Build.ArtifactStagingDirectory)
+#   - job: Secondjob
+#     steps:
+#     - bash: echo build secondjob
+# - stage: DevDeploy
+#   variables:
+#     environment : Dev
+#   dependsOn: Build
+#   jobs:
+#   - job: DevDeploy
+#     steps:
+#     - bash: echo $(environment)Deployjob
+# - stage: QADeploy
+#   variables:
+#     environment : QA
+#   dependsOn: Build
+#   jobs:
+#   - job: QADeploy
+#     steps:
+#     - bash: echo $(environment)Deployjob
+# - stage: PreprodDeploy
+#   variables:
+#     environment : Preprod
+#   dependsOn: 
+#   - DevDeploy
+#   - QADeploy
+#   jobs:
+#   - job: Preprod
+#     steps:
+#     - bash: echo $(environment)Deployjob
