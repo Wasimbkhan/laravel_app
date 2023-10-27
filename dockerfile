@@ -43,7 +43,7 @@ RUN chown -R $user:$user /var/www/html
 USER $user
 
 #Install Composer dependencies & RUN composer install
-RUN Composer install
+RUN composer install
 
 
 
