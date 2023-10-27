@@ -13,6 +13,7 @@ services:
         restart: unless-stopped
         working_dir: /var/www/html
         volumes:
+            - /var/www/html/vendor
             - ./:/var/www/html
         networks:
             - webservernetwork
