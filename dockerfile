@@ -45,5 +45,7 @@ USER $user
 #Install Composer dependencies & RUN composer install
 RUN composer install
 
+CMD ["php artisan key:generate"]
+
 
 
