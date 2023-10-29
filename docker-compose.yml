@@ -2,18 +2,11 @@ version: "3"
 services:
     #PHP Service
     app:
-        build:
-            args:
-                user: php-user
-                uid: 1000
-            context: ./
-            dockerfile: dockerfile
-        image: taskbackend_app
-        container_name: taskbackend_app
+        image: myfirstproject:latest
+        container_name: myfirstproject
         restart: unless-stopped
         working_dir: /var/www/html
         volumes:
-            - /var/www/html/vendor
             - ./:/var/www/html
         networks:
             - webservernetwork
