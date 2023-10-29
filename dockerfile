@@ -45,7 +45,7 @@ USER $user
 #Install Composer dependencies & RUN composer install
 RUN composer install
 
-ENTRYPOINT ["php artisan key:generate"]
+RUN php artisan key:generate
 
 
 
