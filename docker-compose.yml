@@ -5,9 +5,6 @@ services:
         image: myfirstproject:latest
         container_name: myfirstproject
         restart: unless-stopped
-        working_dir: /var/www/html
-        volumes:
-            - ./:/var/www/html
         networks:
             - webservernetwork
 
